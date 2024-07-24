@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../models/product/product.dart';
 import '../screens/product_detail.dart';
 
@@ -18,37 +19,29 @@ class ProductItem extends StatelessWidget {
           ),
         );
       },
-      child: GridTile(
-        footer: GridTileBar(
-          backgroundColor: Colors.black87,
-          title: Text(
-            product.title!,
-            textAlign: TextAlign.center,
-          ),
-        ),
+      child: Column(
+        children: [
+      SizedBox(
+        height: MediaQuery.of(context).size.height * .2,
         child: CachedNetworkImage(
-          imageUrl: product.image!,
-          errorWidget: (context, url, error) => const Icon(Icons.error),
-          placeholder: (context, url) => Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircularProgressIndicator(
-                  color: Colors.orange[900],
-                ),
-                const SizedBox(height: 24),
-                const Text(
-                  "Getting item image",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                  ),
-                ),
-              ],
+            imageUrl: product.image!,
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+            placeholder: (context, url) => const Center(
+              child:  SpinKitCircle(
+                                         color: Colors.black,
+                                       ),
             ),
           ),
-        ),
       ),
+        const SizedBox(height: 10,),
+      Text(
+             "\$${product.price.toString()}",
+              textAlign: TextAlign.center,
+              style: const  TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.bold),
+            ),
+        ],
+      )
+     
     );
   }
 }

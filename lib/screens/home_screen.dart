@@ -44,15 +44,16 @@ class _HomeScreenState extends State<HomeScreen> {
             onRefresh: () async {
               await _fetchProducts();
             },
-            child: GridView.builder(
+            child: 
+            GridView.builder(
               padding: const EdgeInsets.all(10.0),
               itemCount: _products.length,
               itemBuilder: (ctx, i) => ProductItem(product: _products[i]),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 3 / 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
+                childAspectRatio: 7 / 8,
+                crossAxisSpacing: 15,
+                mainAxisSpacing: 15,
               ),
             ),
           ),
